@@ -1,15 +1,15 @@
 import 'dart:io';
 
 void main() {
-  List<String> datos = [];
+  List<String> tareas = [];
   int opcion;
 
   do {
     print('MENÚ');
-    print('1. Insertar');
-    print('2. Cambiar');
-    print('3. Eliminar');
-    print('4. Leer');
+    print('1. Insertar Tarea');
+    print('2. Modificar Tarea');
+    print('3. Eliminar Tarea');
+    print('4. Leer Tarea');
     print('5. Salir');
     stdout.write('Elige una opción: ');
 
@@ -17,24 +17,24 @@ void main() {
 
     switch (opcion) {
       case 1:
-        stdout.write('Ingresa el valor a insertar: ');
+        stdout.write('Ingresa tu tarea: ');
         String nuevo = stdin.readLineSync() ?? '';
-        datos.add(nuevo);
-        print('Valor "$nuevo" insertado.');
+        tareas.add(nuevo);
+        print('Tarea agregada: "$nuevo"');
         break;
 
       case 2:
-        if (datos.isEmpty) {
-          print('No hay datos para cambiar.');
+        if (tareas.isEmpty) {
+          print('No hay tareas para cambiar.');
           break;
         }
-        leerDatos(datos);
-        stdout.write('Índice a cambiar (0 - ${datos.length - 1}): ');
+        leerDatos(tareas);
+        stdout.write('Índice a cambiar (0 - ${tareas.length - 1}): ');
         int idx = int.tryParse(stdin.readLineSync() ?? '') ?? -1;
-        if (idx >= 0 && idx < datos.length) {
+        if (idx >= 0 && idx < tareas.length) {
           stdout.write('Nuevo valor: ');
           String valor = stdin.readLineSync() ?? '';
-          datos[idx] = valor;
+          tareas[idx] = valor;
           print('Cambiado correctamente.');
         } else {
           print('Índice inválido.');
@@ -42,26 +42,26 @@ void main() {
         break;
 
       case 3:
-        if (datos.isEmpty) {
-          print('No hay datos para eliminar.');
+        if (tareas.isEmpty) {
+          print('No hay tareas para eliminar.');
           break;
         }
-        leerDatos(datos);
-        stdout.write('Índice a eliminar (0 - ${datos.length - 1}): ');
+        leerDatos(tareas);
+        stdout.write('Índice a eliminar (0 - ${tareas.length - 1}): ');
         int idx = int.tryParse(stdin.readLineSync() ?? '') ?? -1;
-        if (idx >= 0 && idx < datos.length) {
-          String eliminado = datos.removeAt(idx);
-          print('Eliminado: "$eliminado"');
+        if (idx >= 0 && idx < tareas.length) {
+          String eliminado = tareas.removeAt(idx);
+          print('Tarea eliminada: "$eliminado"');
         } else {
           print('Índice inválido.');
         }
         break;
 
       case 4:
-        if (datos.isEmpty) {
+        if (tareas.isEmpty) {
           print('La lista está vacía.');
         } else {
-          leerDatos(datos);
+          leerDatos(tareas);
         }
         break;
 
